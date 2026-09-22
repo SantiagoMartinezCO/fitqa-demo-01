@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Biblioteca de barrio</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 48rem; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border-bottom: 1px solid #ddd; padding: .4rem .6rem; text-align: left; }
+      .agotado { color: #b00; }
+    </style>
+  </head>
+  <body>
+    <h1>Biblioteca de barrio</h1>
+    <p>Catálogo. La API está documentada en el README del proyecto.</p>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Título</th><th>Autor</th><th>Año</th><th>Ejemplares</th></tr>
+      </thead>
+      <tbody id="catalogo"></tbody>
+    </table>
+
+    <script type="module">
+      const res = await fetch("/libros?limite=100");
+      const { libros } = await res.json();
+      document.getElementById("catalogo").innerHTML = libros
+        .map(
+          (l) => `<tr>
+            <td>${l.id}</td><td>${l.titulo}</td><td>${l.autor}</td>
+            <td>${l.anio}</td>
+            <td class="${l.ejemplares === 0 ? "agotado" : ""}">${l.ejemplares}</td>
+          </tr>`,
+        )
+        .join("");
+    </script>
+  </body>
+</html>

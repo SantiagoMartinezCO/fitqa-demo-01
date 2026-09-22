@@ -1,0 +1,14 @@
+{
+  "name": "biblioteca",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Prestamos de una biblioteca de barrio",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
