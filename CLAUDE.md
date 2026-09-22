@@ -1,8 +1,8 @@
 # Biblioteca de barrio — contexto para agentes
 
 API de préstamos. Node + Express + `node:sqlite`. El README tiene la spec completa: los
-endpoints, las reglas que la API promete cumplir, y una sección de decisiones que parecen
-errores y no lo son. Leelo antes de probar nada.
+endpoints, las reglas que la API promete cumplir y las notas de diseño. Leelo antes de tocar
+nada.
 
 ## Levantar el sistema
 
@@ -28,8 +28,8 @@ compartido por todas las peticiones, así que:
 ## Convenciones del código
 
 - ES modules (`"type": "module"`), Node 24, sin transpilación ni build.
-- Las rutas se declaran una por una en `src/server.js`. Es a propósito: registrarlas en un bucle
-  las vuelve invisibles para cualquier herramienta de análisis estático.
+- Las rutas se declaran una por una en `src/server.js`, sin registro dinámico: el archivo es el
+  índice de la superficie HTTP y se lee de arriba abajo.
 - Un módulo por recurso (`libros`, `socios`, `prestamos`), cada handler exportado por nombre.
 - Los errores se responden como `{ "error": "..." }`, y los de validación agregan
   `{ "detalles": [...] }`.

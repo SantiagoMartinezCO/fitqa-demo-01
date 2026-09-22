@@ -3,8 +3,8 @@
 API de préstamos de una biblioteca chica: catálogo, socios y préstamos. Node + Express con
 SQLite embebido (`node:sqlite`), sin build y sin base en disco.
 
-Es un sistema deliberadamente pequeño: sirve como sujeto de prueba para dimensionar y ejercitar
-una campaña de QA de punta a punta sin depender de infraestructura.
+Está pensada para una biblioteca de barrio: un mostrador, unos cientos de libros y un puñado de
+socios. Por eso no tiene auth, ni colas, ni infraestructura que provisionar.
 
 ## Cómo correrlo
 
@@ -76,7 +76,7 @@ se haga con el catálogo puede hacerlo desaparecer ni dejarlo sin libro asociado
 **Validación.** Cuerpo inválido es 400 con `{error, detalles[]}`. JSON mal formado es 400.
 Recurso inexistente es 404. Ruta inexistente es 404.
 
-## Decisiones que parecen errores y no lo son
+## Notas de diseño
 
 **`GET /socios/:id` de un socio dado de baja devuelve 403, no 404.** Es deliberado: el socio
 existe, y un 404 permitiría averiguar qué emails están registrados y cuáles no probando ids. El
